@@ -14,8 +14,11 @@
      -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": [
      "server",
      "--auth-mode=server",
-     "--secure=false"
-   ]}]'
+     "--secure=false",
+     "--access-control-allow-origin=*",
+   ]},
+   {"op": "replace", "path": "/spec/template/spec/containers/0/readinessProbe/httpGet/scheme", "value": "HTTP"}
+   ]'
    ```
 3. You can port-forward argo UI:
    ```bash
