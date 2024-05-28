@@ -1,16 +1,30 @@
-from fastapi import FastAPI
-import couler.argo as couler
-from couler.argo_submitter import ArgoSubmitter
+import os
 
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from hera.shared import global_config
+from hera.workflows import Steps, Workflow, WorkflowsService, script
+
+load_dotenv()
+global_config.host = os.getenv("ARGO_SERVER")
+global_config.namespace = os.getenv("ARGO_NAMESPACE")
+global_config.service_account_name = os.getenv("ARGO_SA")
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    couler.run_container(
-        image="docker/whalesay", command=["cowsay"], args=["hello world"]
-    )
+@script()
+def echo(message: str):
+    print(message)
 
-    submitter = ArgoSubmitter()
-    result = couler.run(submitter=submitter)
-    return {"message": result}
+
+@app.get("/hello")
+def read_root(message: str = "Hello World!"):
+    with Workflow(
+        generate_name="hello-world-",
+        entrypoint="steps",
+        workflows_service=WorkflowsService(),
+    ) as w:
+        with Steps(name="steps"):
+            echo(arguments={"message": message})
+
+    return w.create()
