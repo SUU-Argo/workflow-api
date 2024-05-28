@@ -1,16 +1,8 @@
 from fastapi import FastAPI
-import couler.argo as couler
-from couler.argo_submitter import ArgoSubmitter
 
+from .config.initial_config import load_env
+from .routes import router
+
+load_env()
 app = FastAPI()
-
-
-@app.get("/")
-def read_root():
-    couler.run_container(
-        image="docker/whalesay", command=["cowsay"], args=["hello world"]
-    )
-
-    submitter = ArgoSubmitter()
-    result = couler.run(submitter=submitter)
-    return {"message": result}
+app.include_router(router)

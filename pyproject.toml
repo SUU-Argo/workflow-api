@@ -12,6 +12,7 @@ uvicorn = {extras = ["standard"], version = "^0.29.0"}
 black = "^24.4.2"
 isort = "^5.13.2"
 couler = {git = "https://github.com/couler-proj/couler"}
+hera = "^5.15.1"
 
 
 [build-system]
