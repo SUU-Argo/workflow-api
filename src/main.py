@@ -2,8 +2,8 @@ import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from hera.workflows import Steps, Workflow, WorkflowsService, script, Container
 from hera.shared import global_config
-from hera.workflows import Steps, Workflow, WorkflowsService, script
 
 load_dotenv()
 global_config.host = os.getenv("ARGO_SERVER")
