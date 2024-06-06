@@ -27,7 +27,7 @@
    UI will be available at http://localhost:2746
 4. Create cluster role, service account and cluster role binding for argo:
    ```bash
-   kubectl apply -f k8s/argo-service-account.yaml
+   kubectl apply -f deploy/02-workflow-api-svcaccount.yaml
    ```
 5. Install project dependencies with poetry:
    ```bash

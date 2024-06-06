@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  namespace: argo
+  name: workflow-api-configmap
+data:
+  ARGO_SERVER: "http://argo-server-svc:2746"
+  ARGO_NAMESPACE: "argo"
+  ARGO_SA: "workflow-api-sa"
