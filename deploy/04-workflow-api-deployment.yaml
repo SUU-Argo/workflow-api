@@ -15,7 +15,7 @@ spec:
         app: workflow-api
     spec:
       containers:
-        - image: suuargo/workflow-api:0.0.1
+        - image: suuargo/workflow-api:0.0.2
           name: workflow-api
           ports:
             - containerPort: 80
