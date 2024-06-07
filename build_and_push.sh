@@ -3,7 +3,7 @@
 # Define variables
 DOCKER_USERNAME="suuargo"
 IMAGE_NAME="workflow-api"
-TAG="0.0.2"
+TAG="0.0.3"
 
 set -e
 
