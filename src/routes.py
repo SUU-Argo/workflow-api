@@ -11,7 +11,7 @@ router = APIRouter()
 @router.get("/")
 def read_root():
     return {
-        "workflows": [
+        "available_workflows": [
             {"method": "GET", "path": "/hello"},
             {"method": "GET", "path": "/artifact"},
             {"method": "POST", "path": "/map-reduce"},
